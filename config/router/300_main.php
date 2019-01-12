@@ -23,6 +23,16 @@ return [
             "handler" => "\Edward\Home\HomeController",
         ],
         [
+            "info" => "Sample controller.",
+            "mount" => "forum",
+            "handler" => "\Edward\Forum\ForumController",
+        ],
+        [
+            "info" => "Sample controller.",
+            "mount" => "profile",
+            "handler" => "\Edward\Profile\ProfileController",
+        ],
+        [
             "info" => "Just say hi with a string.",
             "path" => "",
             "handler" => $handler,

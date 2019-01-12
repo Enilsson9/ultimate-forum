@@ -76,6 +76,12 @@ class UserLoginForm extends FormModel
            return false;
         }
 
+        $user = $db->select("acronym")
+                   ->from("User")
+                   ->where("acronym = ?")
+                   ->execute([$acronym])
+                   ->fetch();
+
         //start session
         $session = $this->di->get("session");
         $session->set('username', $user);

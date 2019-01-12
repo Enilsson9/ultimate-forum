@@ -17,9 +17,12 @@ if (isset($class)) {
 
 
 ?><article <?= classList($classes) ?>>
-<?= $content ?>
+<?php
 
-Go back to login <a href="../">here</a>
 
+var_dump($data); 
+
+
+?>
 
 </article>

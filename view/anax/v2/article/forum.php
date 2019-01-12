@@ -19,7 +19,10 @@ if (isset($class)) {
 ?><article <?= classList($classes) ?>>
 <?= $content ?>
 
-Go back to login <a href="../">here</a>
+<h1>Our ultimate forum</h1>
 
-
+<h2>Ask a question?</h2>
+<input type="text" name="" value="">
+<h2>Filter by tag</h2>
+<h2>All questions</h2>
 </article>

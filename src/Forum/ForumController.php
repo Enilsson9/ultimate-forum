@@ -1,6 +1,6 @@
 <?php
 
-namespace Edward\Home;
+namespace Edward\Forum;
 
 use Anax\Commons\ContainerInjectableInterface;
 use Anax\Commons\ContainerInjectableTrait;
@@ -16,7 +16,7 @@ use Edward\User\HTMLForm\CreateUserForm;
 /**
  * A sample controller to show how a controller class can be implemented.
  */
-class HomeController implements ContainerInjectableInterface
+class ForumController implements ContainerInjectableInterface
 {
     use ContainerInjectableTrait;
 
@@ -87,7 +87,7 @@ class HomeController implements ContainerInjectableInterface
     {
         $page = $this->di->get("page");
 
-        $page->add("anax/v2/article/home", [
+        $page->add("anax/v2/article/forum", [
             "content" => "",
         ]);
 
