@@ -23,12 +23,14 @@ namespace Anax\View;
 <table class="table">
     <tr>
         <th>Id</th>
+        <th>Gravatar</th>
         <th>Full name</th>
         <th>Acronym</th>
         <th>Email</th>
     </tr>
     <tr>
         <td><?= $item->id ?></td>
+        <td><img src="<?= $item->gravatar ?>" alt="Gravatar"></td>
         <td><?= $item->fullname ?></td>
         <td><?= $item->acronym ?></td>
         <td><?= $item->email ?></td>

@@ -45,7 +45,7 @@ class ProfileController implements ContainerInjectableInterface
             "item" => $item,
             //"item" => $profile->find("id", $id),
             //"item" => $profile->findAll(),
-            "session" => $id,
+            //"session" => $id,
         ]);
 
 

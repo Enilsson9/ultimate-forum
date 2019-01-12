@@ -52,11 +52,11 @@ class UpdateForm extends FormModel
                     "value" => $profile->email,
                 ],
 
-                /*"gravatar" => [
+                "gravatar" => [
                     "type" => "text",
                     "validation" => ["not_empty"],
-                    "value" => $profile->image,
-                ],*/
+                    "value" => $profile->gravatar,
+                ],
 
                 "submit" => [
                     "type" => "submit",
@@ -103,6 +103,7 @@ class UpdateForm extends FormModel
         $profile->acronym  = $this->form->value("acronym");
         $profile->fullname  = $this->form->value("fullname");
         $profile->email  = $this->form->value("email");
+        $profile->gravatar  = $this->form->value("gravatar");
         $profile->save();
         return true;
     }
