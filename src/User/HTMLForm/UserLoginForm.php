@@ -77,7 +77,7 @@ class UserLoginForm extends FormModel
         }
 
 
-        $user = $db->select("fullname, acronym, email")
+        $user = $db->select("id")
                    ->from("User")
                    ->where("acronym = ?")
                    ->execute([$acronym])

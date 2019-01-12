@@ -24,7 +24,7 @@ class UpdateForm extends FormModel
         $this->form->create(
             [
                 "id" => __CLASS__,
-                "legend" => "Update details of the item",
+                "legend" => "Update your personal information",
             ],
             [
                 "id" => [
@@ -34,19 +34,25 @@ class UpdateForm extends FormModel
                     "value" => $profile->id,
                 ],
 
-                "title" => [
+                "acronym" => [
                     "type" => "text",
                     "validation" => ["not_empty"],
-                    "value" => $profile->title,
-                ],
-/*
-                "author" => [
-                    "type" => "text",
-                    "validation" => ["not_empty"],
-                    "value" => $profile->author,
+                    "value" => $profile->acronym,
                 ],
 
-                "image" => [
+                "fullname" => [
+                    "type" => "text",
+                    "validation" => ["not_empty"],
+                    "value" => $profile->fullname,
+                ],
+
+                "email" => [
+                    "type" => "text",
+                    "validation" => ["not_empty"],
+                    "value" => $profile->email,
+                ],
+
+                /*"gravatar" => [
                     "type" => "text",
                     "validation" => ["not_empty"],
                     "value" => $profile->image,
@@ -58,9 +64,9 @@ class UpdateForm extends FormModel
                     "callback" => [$this, "callbackSubmit"]
                 ],
 
-                "reset" => [
+                /*"reset" => [
                     "type"      => "reset",
-                ],
+                ],*/
             ]
         );
     }
@@ -76,11 +82,11 @@ class UpdateForm extends FormModel
      */
     public function getItemDetails($id) : object
     {
-        $session = $this->di->get("session");
-        $data = $session->get('username');
-        return $data;
+        $profile = new Profile();
+        $profile->setDb($this->di->get("dbqb"));
+        $profile->find("id", $id);
+        return $profile;
     }
-
 
 
     /**
@@ -95,22 +101,24 @@ class UpdateForm extends FormModel
         $profile->setDb($this->di->get("dbqb"));
         $profile->find("id", $this->form->value("id"));
         $profile->acronym  = $this->form->value("acronym");
+        $profile->fullname  = $this->form->value("fullname");
+        $profile->email  = $this->form->value("email");
         $profile->save();
         return true;
     }
 
 
 
-    // /**
-    //  * Callback what to do if the form was successfully submitted, this
-    //  * happen when the submit callback method returns true. This method
-    //  * can/should be implemented by the subclass for a different behaviour.
-    //  */
-    // public function callbackSuccess()
-    // {
-    //     $this->di->get("response")->redirect("profile")->send();
-    //     //$this->di->get("response")->redirect("profile/update/{$profile->id}");
-    // }
+     /**
+      * Callback what to do if the form was successfully submitted, this
+      * happen when the submit callback method returns true. This method
+      * can/should be implemented by the subclass for a different behaviour.
+      */
+     public function callbackSuccess()
+     {
+         $this->di->get("response")->redirect("profile")->send();
+         //$this->di->get("response")->redirect("profile/update/{$profile->id}");
+     }
 
 
 

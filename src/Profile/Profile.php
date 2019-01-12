@@ -23,4 +23,6 @@ class Profile extends ActiveRecordModel
      */
     public $id;
     public $acronym;
+    public $fullname;
+    public $email;
 }

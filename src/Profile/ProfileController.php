@@ -6,8 +6,9 @@ use Anax\Commons\ContainerInjectableInterface;
 use Anax\Commons\ContainerInjectableTrait;
 use Anax\Route\Exception\NotFoundException;
 use Anax\Route\Exception\ForbiddenException;
-use Edward\User\HTMLForm\UserLoginForm;
-use Edward\User\HTMLForm\CreateUserForm;
+use Edward\Profile\HTMLForm\UpdateForm;
+
+
 
 // use Anax\Route\Exception\ForbiddenException;
 // use Anax\Route\Exception\NotFoundException;
@@ -21,34 +22,6 @@ class ProfileController implements ContainerInjectableInterface
     use ContainerInjectableTrait;
 
 
-
-    /**
-     * Description.
-     *
-     * @param datatype $variable Description
-     *
-     * @throws Exception
-     *
-     * @return object as a response object
-     */
-    //public function loginAction() : object
-
-    /*public function indexAction() : object
-    {
-        $page = $this->di->get("page");
-        $session = $this->di->get("session");
-
-        $data = $session->get('username');
-
-        $page->add("anax/v2/article/profile", [
-            "data" => $data,
-        ]);
-
-        return $page->render([
-            "title" => "A home page",
-        ]);
-    }*/
-
     /**
      * Show all items.
      *
@@ -58,11 +31,23 @@ class ProfileController implements ContainerInjectableInterface
     {
         $page = $this->di->get("page");
         $session = $this->di->get("session");
-        $data = $session->get('username');
+        $current = $session->get('username');
+        $id = $current->id;
+
+        $profile = new Profile();
+        $profile->setDb($this->di->get("dbqb"));
+
+        $item = $profile->findAll();
+        $item = $item[$id - 1];
 
         $page->add("profile/crud/view-all", [
-            "items" => $data,
+            //"items" => $profile->findAll(),
+            "item" => $item,
+            //"item" => $profile->find("id", $id),
+            //"item" => $profile->findAll(),
+            "session" => $id,
         ]);
+
 
         return $page->render([
             "title" => "A collection of items",
@@ -76,9 +61,13 @@ class ProfileController implements ContainerInjectableInterface
      *
      * @return object as a response object
      */
-    public function updateAction(int $id) : object
+    public function updateAction() : object
     {
         $page = $this->di->get("page");
+        $session = $this->di->get("session");
+        $current = $session->get('username');
+        $id = $current->id;
+
         $form = new UpdateForm($this->di, $id);
         $form->check();
 

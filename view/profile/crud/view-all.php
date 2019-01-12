@@ -9,27 +9,30 @@ namespace Anax\View;
 //var_dump(get_defined_functions());
 //echo showEnvironment(get_defined_vars());
 
-?><h1>View all items</h1>
+?><h1>My profile</h1>
 
+<pre>
+<?php
 
-<?php if (!$items) : ?>
-    <p>There are no items to show.</p>
-    <?php
-        return;
-endif;
+//var_dump($item);
+//var_dump($session);
+
 ?>
 
+</pre>
 <table class="table">
     <tr>
         <th>Id</th>
+        <th>Full name</th>
         <th>Acronym</th>
+        <th>Email</th>
     </tr>
-    <?php foreach ($items as $item) : ?>
     <tr>
-        <td>
-            <a href="<?= url("profile/update/{$item->id}"); ?>"><?= $item->id ?></a>
-        </td>
+        <td><?= $item->id ?></td>
+        <td><?= $item->fullname ?></td>
         <td><?= $item->acronym ?></td>
+        <td><?= $item->email ?></td>
     </tr>
-    <?php endforeach; ?>
 </table>
+
+<p>Click <a href="profile/update">here</a> to update</p>

@@ -13,7 +13,7 @@ namespace Anax\View;
 $item = isset($item) ? $item : null;
 
 // Create urls for navigation
-$urlToView = url("book");
+$urlToView = url("profile");
 
 
 
