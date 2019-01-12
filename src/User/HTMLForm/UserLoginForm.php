@@ -76,7 +76,8 @@ class UserLoginForm extends FormModel
            return false;
         }
 
-        $user = $db->select("acronym")
+
+        $user = $db->select("fullname, acronym, email")
                    ->from("User")
                    ->where("acronym = ?")
                    ->execute([$acronym])
@@ -88,7 +89,7 @@ class UserLoginForm extends FormModel
         //output
         $this->form->addOutput("User logged in.");
 
-        header('Location: home');
+        //header('Location: home');
 
         return true;
     }

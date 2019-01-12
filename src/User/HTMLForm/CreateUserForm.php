@@ -210,6 +210,12 @@ class CreateUserForm extends FormModel
                 "legend" => "Create user",
             ],
             [
+                "fullname" => [
+                    "type"        => "text",
+                ],
+                "email" => [
+                    "type"        => "email",
+                ],
                 "acronym" => [
                     "type"        => "text",
                 ],
@@ -284,6 +290,8 @@ class CreateUserForm extends FormModel
 
 
         // Get values from the submitted form
+        $fullname      = $this->form->value("fullname");
+        $email         = $this->form->value("email");
         $acronym       = $this->form->value("acronym");
         $password      = $this->form->value("password");
         $passwordAgain = $this->form->value("password-again");
@@ -299,8 +307,8 @@ class CreateUserForm extends FormModel
         $db = $this->di->get("dbqb");
         $password = password_hash($password, PASSWORD_DEFAULT);
         $db->connect()
-           ->insert("User", ["acronym", "password"])
-           ->execute([$acronym, $password]);
+           ->insert("User", ["acronym", "fullname", "email", "password"])
+           ->execute([$acronym, $fullname, $email, $password]);
 
         $this->form->addOutput("User was created.");
         return true;
