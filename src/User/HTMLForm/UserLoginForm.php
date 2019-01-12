@@ -76,7 +76,14 @@ class UserLoginForm extends FormModel
            return false;
         }
 
+        //start session
+        $session = $this->di->get("session");
+        $session->set('username', $user);
+        //output
         $this->form->addOutput("User logged in.");
+
+        header('Location: home');
+
         return true;
     }
 }

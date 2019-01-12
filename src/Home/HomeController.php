@@ -1,10 +1,11 @@
 <?php
 
-namespace Edward\User;
+namespace Edward\Home;
 
 use Anax\Commons\ContainerInjectableInterface;
 use Anax\Commons\ContainerInjectableTrait;
 use Anax\Route\Exception\NotFoundException;
+use Anax\Route\Exception\ForbiddenException;
 use Edward\User\HTMLForm\UserLoginForm;
 use Edward\User\HTMLForm\CreateUserForm;
 
@@ -15,7 +16,7 @@ use Edward\User\HTMLForm\CreateUserForm;
 /**
  * A sample controller to show how a controller class can be implemented.
  */
-class UserController implements ContainerInjectableInterface
+class HomeController implements ContainerInjectableInterface
 {
     use ContainerInjectableTrait;
 
@@ -37,15 +38,10 @@ class UserController implements ContainerInjectableInterface
     */
     public function initialize() : void
     {
-         //$session = $this->di->get("session");
-        // $session->has('username');
-
-        /*$router = $this->di->get("router");
-
-        $router->addInternal("404", function () {
-            echo "404 ";
-        });*/
-
+        /*$session = $this->di->get("session");
+        if (!$session->has('username')) {
+            throw new ForbiddenException("Detailed error message.");
+        };*/
     }
 
 
@@ -90,44 +86,28 @@ class UserController implements ContainerInjectableInterface
     public function indexAction() : object
     {
         $page = $this->di->get("page");
-        $form = new UserLoginForm($this->di);
-        $form->check();
 
-        $page->add("anax/v2/article/login", [
-            "content" => $form->getHTML(),
+        $page->add("anax/v2/article/default", [
+            "content" => "home here",
         ]);
 
         return $page->render([
-            "title" => "A login page",
+            "title" => "A home page",
         ]);
     }
 
-
-    /**
-     * Description.
-     *
-     * @param datatype $variable Description
-     *
-     * @throws Exception
-     *
-     * @return object as a response object
-     */
-    public function createAction() : object
+    public function aboutAction() : object
     {
         $page = $this->di->get("page");
-        $form = new CreateUserForm($this->di);
-        $form->check();
 
-        $page->add("anax/v2/article/register", [
-            "content" => $form->getHTML(),
+        $page->add("anax/v2/article/default", [
+            "content" => "About",
         ]);
 
         return $page->render([
-            "title" => "A create user page",
+            "title" => "About page",
         ]);
     }
-
-
 
 
     /**
