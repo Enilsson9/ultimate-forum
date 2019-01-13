@@ -9,6 +9,7 @@ SELECT
     q.id AS question_id,
     u.acronym AS acronym,
     q.content AS question,
+    q.description AS description,
     q.created AS created,
     a.content AS answer,
     u.gravatar AS gravatar
@@ -33,7 +34,8 @@ SELECT
     u.id AS id,
     u.acronym AS acronym,
     a.content AS answer,
-    a.created AS created
+    a.created AS created,
+    u.gravatar AS gravatar
 FROM User AS u
     JOIN user2answer AS ua
         ON ua.answer_id = u.id
@@ -132,3 +134,94 @@ FROM User AS u
     JOIN question AS q
         ON uq.question_id = q.id
 ORDER BY user_id_answer;
+
+
+
+
+--
+--View all answers with user
+--
+DROP VIEW IF EXISTS VAllQComment;
+CREATE VIEW VAllQComment
+AS
+SELECT
+    u.id AS id,
+    u.acronym AS acronym,
+    qc.content AS comment,
+    qc.created AS created,
+    uq.question_id AS question_id
+FROM User AS u
+    JOIN user2qcomment AS uq
+        ON uq.user_id = u.id
+    JOIN QComment AS qc
+        ON uq.comment_id = qc.id
+ORDER BY ID;
+
+--
+--View all answers with user
+--
+DROP VIEW IF EXISTS VAllAComment;
+CREATE VIEW VAllAComment
+AS
+SELECT
+    u.id AS id,
+    u.acronym AS acronym,
+    ac.content AS comment,
+    ac.created AS created,
+    ua.question_id AS question_id
+FROM User AS u
+    JOIN user2acomment AS ua
+        ON ua.user_id = u.id
+    JOIN AComment AS ac
+        ON ua.comment_id = ac.id
+ORDER BY ID;
+
+
+--
+--View all answers with user
+--
+DROP VIEW IF EXISTS VUltimate;
+CREATE VIEW VUltimate
+AS
+SELECT
+    q.id AS question_id,
+
+    q.content AS question_content,
+    q.description AS question_description,
+
+    vaq.user_id AS user_question_id,
+    vaq.acronym AS user_question_acronym,
+    vaq.created AS user_question_created,
+    vaq.gravatar AS user_question_gravatar,
+
+    vqc.comment AS comment_question,
+    vqc.acronym AS comment_question_user,
+    vqc.id AS comment_question_user_id,
+    vqc.created AS comment_question_created,
+
+    vaa.answer AS answer_content,
+    vaa.acronym AS answer_user,
+    vaa.id AS answer_user_id,
+    vaa.gravatar AS answer_user_gravatar,
+    vaa.created AS answer_user_created
+
+    vac.comment AS comment_answer,
+    vac.acronym AS comment_answer_user,
+    vac.id AS comment_answer_user_id,
+    vac.created AS comment_answer_created
+
+FROM Question AS q
+    JOIN VAllQuestion AS vaq
+        ON vaq.question_id = q.id
+
+    JOIN VAllQComment AS vqc
+        ON vqc.question_id = q.id
+
+    JOIN VAllAnswer AS vaa
+        ON vaa.id = q.id
+
+    JOIN VAllAComment AS vac
+        ON vac.question_id = q.id
+
+
+ORDER BY question_id;

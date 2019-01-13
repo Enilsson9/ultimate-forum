@@ -31,9 +31,9 @@ INSERT INTO user2answer VALUES
 
 DELETE FROM Question;
 INSERT INTO Question VALUES
-    ("1", "What?", "2018-03-28 12:05"),
-    ("2", "How?", "2018-03-28 12:05"),
-    ("3", "When?", "2018-03-28 12:05")
+    ("1", "What?", "Description 1", "2018-03-28 12:05"),
+    ("2", "How?", "Description 2", "2018-03-28 12:05"),
+    ("3", "When?", "Description 3", "2018-03-28 12:05")
 ;
 
 DELETE FROM question2tag;
@@ -87,16 +87,30 @@ INSERT INTO question2comment VALUES
     ("3", "3", "3")
 ;
 
-DELETE FROM Comment;
-INSERT INTO Comment VALUES
-    ("1", "This is a comment", "2018-04-19 12:05"),
-    ("2", "This is also a comment", "2018-04-19 12:05"),
-    ("3", "I am a comment", "2018-04-19 12:05")
+DELETE FROM QComment;
+INSERT INTO QComment VALUES
+    ("1", "Question comment 1", "2018-04-19 12:05"),
+    ("2", "Question comment 2", "2018-04-19 12:05"),
+    ("3", "Question comment 3", "2018-04-19 12:05")
 ;
 
-DELETE FROM user2comment;
-INSERT INTO user2comment VALUES
-    ("1", "1", "1"),
-    ("2", "2", "2"),
-    ("3", "3", "3")
+DELETE FROM AComment;
+INSERT INTO AComment VALUES
+    ("1", "Answer comment 1", "2018-04-06 12:05"),
+    ("2", "Answer comment 2", "2018-04-06 12:05"),
+    ("3", "Answer comment 3", "2018-04-06 12:05")
+;
+
+DELETE FROM user2qcomment;
+INSERT INTO user2qcomment VALUES
+    ("1", "1", "1", "1"),
+    ("2", "2", "2", "2"),
+    ("3", "3", "3", "3")
+;
+
+DELETE FROM user2acomment;
+INSERT INTO user2acomment VALUES
+    ("1", "1", "1", "1"),
+    ("2", "2", "2", "2"),
+    ("3", "3", "3", "3")
 ;
