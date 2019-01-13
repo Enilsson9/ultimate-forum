@@ -18,26 +18,25 @@ if (isset($class)) {
 
 ?><article <?= classList($classes) ?>>
 
-<h1>Filtered by tag</h1>
-
-<button>Ask a question</button>
+    <pre>
+    <?php
+        //var_dump($questions)
+     ?>
+    </pre>
 
 <?php foreach ($questions as $question) : ?>
-    <?php if ($question->id == $id  ) : ?>
-        <h2>Tag "<?= $question->tag ?>"</h2>
+    <?php if ($question->user_id == $id  ) : ?>
+        <h1><?= $question->acronym ?></h1>
+        <img src="<?= $question->gravatar ?>" alt="Gravatar">
         <?php break; ?>
     <?php endif; ?>
 <?php endforeach; ?>
 
-<pre>
-<?php
-    //var_dump($questions)
- ?>
-</pre>
 
 
+<h2>Questions:</h2>
     <?php foreach ($questions as $question) : ?>
-        <?php if ($question->id == $id  ) : ?>
+        <?php if ($question->user_id == $id  ) : ?>
             <div class="byline">
                 <a href="<?= url("forum/questions/{$question->question_id}"); ?>">
                     <h4><?= $question->question ?></h4>
@@ -47,9 +46,25 @@ if (isset($class)) {
                         <?= $question->acronym ?>
                     </a>
                 </p>
-                <time><?= $question->created ?></time>
+                Created: <time><?= $question->created ?></time>
             </div>
         <?php endif; ?>
     <?php endforeach; ?>
+
+<h2>Answers:</h2>
+
+<?php foreach ($answers as $answer) : ?>
+    <?php if ($answer->user_id_answer == $id  ) : ?>
+        <div class="byline">
+            On question: <a href="<?= url("forum/questions/{$answer->question_id}"); ?>">
+                <?= $answer->question ?>
+            </a>
+
+            <p><strong>Answer:</strong> <?= $answer->answer ?></p>
+            Created: <time><?= $answer->answer_created ?></time>
+        </div>
+    <?php endif; ?>
+<?php endforeach; ?>
+
 
 </article>

@@ -64,22 +64,13 @@ class ForumController implements ContainerInjectableInterface
     {
         $page = $this->di->get("page");
 
-        $forum = new Forum();
-        $tags = new Tag();
+        $tagQuestionUser = new TagQuestionUser();
 
-        $forum->setDb($this->di->get("dbqb"));
-        $tags->setDb($this->di->get("dbqb"));
-
-        $tags->select("password")
-               ->from("User")
-               ->where("acronym = ?")
-               ->execute([$acronym])
-               ->fetch();
-
+        $tagQuestionUser->setDb($this->di->get("dbqb"));
 
         $page->add("anax/v2/article/tag", [
-            "questions" => $forum->findAll(),
-            "tags" => $tags->findAll(),
+            "questions" => $tagQuestionUser->findAll(),
+            "id" => $id,
         ]);
 
         return $page->render([
@@ -106,8 +97,13 @@ class ForumController implements ContainerInjectableInterface
         $forum = new Forum();
         $forum->setDb($this->di->get("dbqb"));
 
-        $page->add("anax/v2/article/forum", [
+        $answers = new AnswerUser();
+        $answers->setDb($this->di->get("dbqb"));
+
+        $page->add("anax/v2/article/user", [
             "questions" => $forum->findAll(),
+            "answers" => $answers->findAll(),
+            "id" => $id,
         ]);
 
         return $page->render([

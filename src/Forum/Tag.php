@@ -22,6 +22,8 @@ class Tag extends ActiveRecordModel
      * @var integer $id primary key auto incremented.
      */
     public $id;
+    public $tag_id;
     public $question;
     public $tag;
+    public $acronym;
 }

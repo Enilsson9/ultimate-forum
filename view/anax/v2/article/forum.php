@@ -38,15 +38,15 @@ if (isset($class)) {
 
 
         <div class="byline">
-            <a href="<?= url("forum/questions/{$question->id}"); ?>">
+            <a href="<?= url("forum/questions/{$question->question_id}"); ?>">
                 <h4><?= $question->question ?></h4>
             </a>
             Tags:
             <?php foreach ($tags as $tag) : ?>
 
-                <?php if ($tag->id === $question->id  ) : ?>
+                <?php if ($tag->id === $question->question_id  ) : ?>
 
-                    <a href="<?= url("forum/tags/{$tag->id}"); ?>">
+                    <a href="<?= url("forum/tags/{$tag->tag_id}"); ?>">
                         <?= $tag->tag ?>
                     </a>
                     -
@@ -56,7 +56,7 @@ if (isset($class)) {
             <?php endforeach; ?>
 
             <p>By
-                <a href="<?= url("forum/users/{$question->acronym}"); ?>">
+                <a href="<?= url("forum/users/{$question->user_id}"); ?>">
                     <?= $question->acronym ?>
                 </a>
             </p>
@@ -66,7 +66,5 @@ if (isset($class)) {
 
 
     <?php endforeach; ?>
-
-<h2>Filter by tag</h2>
 
 </article>
