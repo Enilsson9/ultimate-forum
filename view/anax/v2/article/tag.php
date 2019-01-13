@@ -28,7 +28,7 @@ if (isset($class)) {
 
 <?php
 
-    //var_dump($tags);
+    var_dump($chosenTag);
 
 
  ?>
@@ -46,7 +46,7 @@ if (isset($class)) {
 
                 <?php if ($tag->id === $question->id  ) : ?>
 
-                    <a href="<?= url("forum/tags/{$tag->id}"); ?>">
+                    <a href="<?= url("forum/tags/{$tag->tag}"); ?>">
                         <?= $tag->tag ?>
                     </a>
                     -

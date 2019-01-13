@@ -23,40 +23,16 @@ if (isset($class)) {
 <button>Ask a question</button>
 <h2>All questions</h2>
 
-
-<pre>
-
-<?php
-
-    //var_dump($tags);
-
-
- ?>
-
-</pre>
 <?php foreach ($questions as $question) : ?>
 
 
         <div class="byline">
-            <a href="<?= url("forum/questions/{$question->id}"); ?>">
+            <a href="<?= url("forum/{$question->acronym}/{$question->id}"); ?>">
                 <h4><?= $question->question ?></h4>
             </a>
-            Tags:
-            <?php foreach ($tags as $tag) : ?>
 
-                <?php if ($tag->id === $question->id  ) : ?>
-
-                    <a href="<?= url("forum/tags/{$tag->id}"); ?>">
-                        <?= $tag->tag ?>
-                    </a>
-                    -
-                <?php endif; ?>
-
-
-            <?php endforeach; ?>
-
-            <p>By
-                <a href="<?= url("forum/users/{$question->acronym}"); ?>">
+            <p>By 
+                <a href="<?= url("forum/{$question->acronym}"); ?>">
                     <?= $question->acronym ?>
                 </a>
             </p>

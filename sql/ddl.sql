@@ -33,7 +33,8 @@ CREATE TABLE user2question (
 DROP TABLE IF EXISTS Question;
 CREATE TABLE Question (
     "id" INTEGER PRIMARY KEY NOT NULL,
-    "content" TEXT NOT NULL
+    "content" TEXT NOT NULL,
+    "created" DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
 
@@ -43,7 +44,7 @@ CREATE TABLE Question (
 DROP TABLE IF EXISTS question2tag;
 CREATE TABLE question2tag (
     "id" INTEGER PRIMARY KEY NOT NULL,
-    "user_id" INT,
+    "question_id" INT,
     "tag_id" INT
 );
 
@@ -73,7 +74,18 @@ CREATE TABLE question2answer (
 DROP TABLE IF EXISTS Answer;
 CREATE TABLE Answer (
     "id" INTEGER PRIMARY KEY NOT NULL,
-    "content" TEXT NOT NULL
+    "content" TEXT NOT NULL,
+    "created" DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+--
+-- Table User
+--
+DROP TABLE IF EXISTS user2answer;
+CREATE TABLE user2answer (
+    "id" INTEGER PRIMARY KEY NOT NULL,
+    "user_id" INT,
+    "answer_id" INT
 );
 
 --
@@ -100,8 +112,19 @@ CREATE TABLE question2comment (
 --
 -- Table User
 --
+DROP TABLE IF EXISTS user2comment;
+CREATE TABLE user2comment (
+    "id" INTEGER PRIMARY KEY NOT NULL,
+    "user_id" INT,
+    "comment_id" INT
+);
+
+--
+-- Table User
+--
 DROP TABLE IF EXISTS Comment;
 CREATE TABLE Comment (
     "id" INTEGER PRIMARY KEY NOT NULL,
-    "content" TEXT NOT NULL
+    "content" TEXT NOT NULL,
+    "created" DATETIME DEFAULT CURRENT_TIMESTAMP
 );
