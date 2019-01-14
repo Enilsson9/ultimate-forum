@@ -20,7 +20,7 @@ if (isset($class)) {
 
 <h1>Our ultimate forum</h1>
 
-<button>Ask a question</button>
+<p>Ask a question <a href="forum/ask">here</a></p>
 <h2>All questions</h2>
 
 <?php foreach ($questions as $question) : ?>
@@ -31,7 +31,7 @@ if (isset($class)) {
                 <h4><?= $question->question ?></h4>
             </a>
 
-            <p>By 
+            <p>By
                 <a href="<?= url("forum/{$question->acronym}"); ?>">
                     <?= $question->acronym ?>
                 </a>

@@ -6,6 +6,7 @@ use Anax\Commons\ContainerInjectableInterface;
 use Anax\Commons\ContainerInjectableTrait;
 use Anax\Route\Exception\NotFoundException;
 use Anax\Route\Exception\ForbiddenException;
+use Edward\Forum\HTMLForm\CreateForm;
 
 // use Anax\Route\Exception\ForbiddenException;
 // use Anax\Route\Exception\NotFoundException;
@@ -149,6 +150,33 @@ class ForumController implements ContainerInjectableInterface
 
         return $page->render([
             "title" => "Ultimate forum",
+        ]);
+    }
+
+
+    /**
+     * Handler with form to update an item.
+     *
+     * @param int $id the id to update.
+     *
+     * @return object as a response object
+     */
+    public function askAction() : object
+    {
+        $page = $this->di->get("page");
+        $session = $this->di->get("session");
+        $current = $session->get('username');
+        $id = $current->id;
+
+        $form = new CreateForm($this->di);
+        $form->check();
+
+        $page->add("profile/crud/create", [
+            "form" => $form->getHTML(),
+        ]);
+
+        return $page->render([
+            "title" => "Update an item",
         ]);
     }
 

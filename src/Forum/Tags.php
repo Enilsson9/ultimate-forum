@@ -7,12 +7,12 @@ use Anax\DatabaseActiveRecord\ActiveRecordModel;
 /**
  * A database driven model using the Active Record design pattern.
  */
-class Question extends ActiveRecordModel
+class Tags extends ActiveRecordModel
 {
     /**
      * @var string $tableName name of the database table.
      */
-    protected $tableName = "Question";
+    protected $tableName = "Tag";
 
 
 
@@ -23,6 +23,4 @@ class Question extends ActiveRecordModel
      */
     public $id;
     public $content;
-    public $description;
-    public $created;
 }

@@ -37,7 +37,8 @@ SELECT
     u.acronym AS acronym,
     a.content AS answer,
     a.created AS created,
-    u.gravatar AS gravatar
+    u.gravatar AS gravatar,
+    u.id AS user_id
 FROM Question AS q
     JOIN question2answer AS qa
         ON qa.question_id = q.id

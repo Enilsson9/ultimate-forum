@@ -20,20 +20,9 @@ if (isset($class)) {
 
 <h1>Our ultimate forum</h1>
 
-<button>Ask a question</button>
+<p>Ask a question <a href="forum/ask/">here</a></p>
 <h2>All questions</h2>
 
-
-<pre>
-
-<?php
-
-    //var_dump($tags);
-
-
- ?>
-
-</pre>
 <?php foreach ($questions as $question) : ?>
 
 
