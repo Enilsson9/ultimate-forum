@@ -203,7 +203,7 @@ SELECT
     vaa.acronym AS answer_user,
     vaa.id AS answer_user_id,
     vaa.gravatar AS answer_user_gravatar,
-    vaa.created AS answer_user_created
+    vaa.created AS answer_user_created,
 
     vac.comment AS comment_answer,
     vac.acronym AS comment_answer_user,

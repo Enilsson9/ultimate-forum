@@ -112,5 +112,34 @@ class ForumController implements ContainerInjectableInterface
     }
 
 
+    /**
+     * Description.
+     *
+     * @param datatype $variable Description
+     *
+     * @throws Exception
+     *
+     * @return object as a response object
+     */
+
+
+    public function questionsAction(int $id) : object
+    {
+        $page = $this->di->get("page");
+
+        $forum = new Question();
+        $forum->setDb($this->di->get("dbqb"));
+
+        $page->add("anax/v2/article/finalquestion", [
+            "items" => $forum->findAll(),
+            "id" => $id,
+        ]);
+
+        return $page->render([
+            "title" => "A home page",
+        ]);
+    }
+
+
 
 }
