@@ -44,10 +44,15 @@ if (isset($class)) {
 <!-- MAIN QUERY COMMENTS -->
 <?php foreach ($Qcomments as $comment) : ?>
     <?php if ($comment->question_id == $id  ) : ?>
-        <p><?= $comment->comment ?> // <a href="../users/<?= $comment->id ?>"><?= $comment->acronym ?></a>
-        - <?= $comment->created ?></p>
+        <i><?= $comment->comment ?> // <a href="../users/<?= $comment->id ?>"><?= $comment->acronym ?></a>
+        - <?= $comment->created ?></i>
     <?php endif; ?>
 <?php endforeach; ?>
+<br>
+<br>
+<?= $qform ?>
+
+
 
 
 <!-- MAIN ANSWER -->
@@ -61,16 +66,31 @@ if (isset($class)) {
             <img width="50px" src="<?= $answer->gravatar?>" alt="Gravatar">
         </p>
 
+        <!--<p><b>Comments:</b></p>-->
+        <!-- MAIN Answer COMMENTS -->
+        <?php foreach ($Acomments as $comment) : ?>
+
+            <?php if ($comment->question_id == $id && $comment->answer_id == $answer->id) : ?>
+                <i><?= $comment->comment ?> // <a href="../users/<?= $comment->id ?>"><?= $comment->acronym ?></a>
+                - <?= $comment->created ?></i>
+            <?php endif; ?>
+        <?php endforeach; ?>
+    <?php else: ?>
+        <p>No answers yet</p>
+        <?php break; ?>
     <?php endif; ?>
 <?php endforeach; ?>
 
-<!-- MAIN QUERY COMMENTS -->
-<?php foreach ($Acomments as $comment) : ?>
-    <?php if ($comment->question_id == $id  ) : ?>
-        <p><?= $comment->comment ?> // <a href="../users/<?= $comment->id ?>"><?= $comment->acronym ?></a>
-        - <?= $comment->created ?></p>
+<?php foreach ($answers as $answer) : ?>
+    <?php if ($answer->question_id == $id) : ?>
+        <h2>Leave a comment</h2>
+        <?= $cform ?>
+        <?php break; ?>
     <?php endif; ?>
 <?php endforeach; ?>
 
+
+<h2>Leave an answer</h2>
+<?= $aform ?>
 
 </article>

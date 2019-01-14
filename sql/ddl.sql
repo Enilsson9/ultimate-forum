@@ -2,7 +2,7 @@
 -- Creating a User table.
 --
 
-
+DROP TABLE IF EXISTS Comment;
 
 --
 -- Table User

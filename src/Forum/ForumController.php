@@ -7,6 +7,9 @@ use Anax\Commons\ContainerInjectableTrait;
 use Anax\Route\Exception\NotFoundException;
 use Anax\Route\Exception\ForbiddenException;
 use Edward\Forum\HTMLForm\CreateForm;
+use Edward\Forum\HTMLForm\CommentQuestionForm;
+use Edward\Forum\HTMLForm\CreateAnswerForm;
+use Edward\Forum\HTMLForm\CommentAnswerForm;
 
 // use Anax\Route\Exception\ForbiddenException;
 // use Anax\Route\Exception\NotFoundException;
@@ -140,11 +143,23 @@ class ForumController implements ContainerInjectableInterface
         $answerComment = new AnswerComment();
         $answerComment->setDb($this->di->get("dbqb"));
 
+        $questionCommentForm = new CommentQuestionForm($this->di);
+        $questionCommentForm->check();
+
+        $answerForm = new CreateAnswerForm($this->di);
+        $answerForm->check();
+
+        $answerCommentForm = new CommentAnswerForm($this->di);
+        $answerCommentForm->check();
+
         $page->add("anax/v2/article/finalquestion", [
             "questions" => $question->findAll(),
             "answers" => $answer->findAll(),
             "Qcomments" => $questionComment->findAll(),
             "Acomments" => $answerComment->findAll(),
+            "qform" => $questionCommentForm->getHTML(),
+            "aform" => $answerForm->getHTML(),
+            "cform" => $answerCommentForm->getHTML(),
             "id" => $id,
         ]);
 

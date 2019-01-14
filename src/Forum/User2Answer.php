@@ -7,12 +7,12 @@ use Anax\DatabaseActiveRecord\ActiveRecordModel;
 /**
  * A database driven model using the Active Record design pattern.
  */
-class AnswerComment extends ActiveRecordModel
+class User2Answer extends ActiveRecordModel
 {
     /**
      * @var string $tableName name of the database table.
      */
-    protected $tableName = "VAllAComment";
+    protected $tableName = "user2answer";
 
 
 
@@ -21,11 +21,7 @@ class AnswerComment extends ActiveRecordModel
      *
      * @var integer $id primary key auto incremented.
      */
-
     public $id;
-    public $acronym;
-    public $comment;
-    public $created;
-    public $question_id;
+    public $user_id;
     public $answer_id;
 }

@@ -177,12 +177,15 @@ SELECT
     u.acronym AS acronym,
     ac.content AS comment,
     ac.created AS created,
-    ua.question_id AS question_id
+    ua.question_id AS question_id,
+    anc.answer_id AS answer_id
 FROM User AS u
     JOIN user2acomment AS ua
         ON ua.user_id = u.id
     JOIN AComment AS ac
         ON ua.comment_id = ac.id
+    JOIN answer2comment AS anc
+        ON anc.comment_id = ac.id
 ORDER BY ID;
 
 
