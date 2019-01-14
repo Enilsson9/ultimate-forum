@@ -127,16 +127,28 @@ class ForumController implements ContainerInjectableInterface
     {
         $page = $this->di->get("page");
 
-        $forum = new Question();
-        $forum->setDb($this->di->get("dbqb"));
+        $question = new Forum();
+        $question->setDb($this->di->get("dbqb"));
+
+        $answer = new Answer();
+        $answer->setDb($this->di->get("dbqb"));
+
+        $questionComment = new QuestionComment();
+        $questionComment->setDb($this->di->get("dbqb"));
+
+        $answerComment = new AnswerComment();
+        $answerComment->setDb($this->di->get("dbqb"));
 
         $page->add("anax/v2/article/finalquestion", [
-            "items" => $forum->findAll(),
+            "questions" => $question->findAll(),
+            "answers" => $answer->findAll(),
+            "Qcomments" => $questionComment->findAll(),
+            "Acomments" => $answerComment->findAll(),
             "id" => $id,
         ]);
 
         return $page->render([
-            "title" => "A home page",
+            "title" => "Ultimate forum",
         ]);
     }
 

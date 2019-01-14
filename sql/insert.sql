@@ -62,8 +62,8 @@ INSERT INTO Tag VALUES
 DELETE FROM question2answer;
 INSERT INTO question2answer VALUES
     ("1", "1", "1"),
-    ("2", "2", "2"),
-    ("3", "3", "3")
+    ("2", "1", "2"),
+    ("3", "1", "3")
 ;
 
 DELETE FROM Answer;

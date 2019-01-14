@@ -7,12 +7,12 @@ use Anax\DatabaseActiveRecord\ActiveRecordModel;
 /**
  * A database driven model using the Active Record design pattern.
  */
-class Forum extends ActiveRecordModel
+class Answer extends ActiveRecordModel
 {
     /**
      * @var string $tableName name of the database table.
      */
-    protected $tableName = "VAllQuestion";
+    protected $tableName = "VAllAnswer";
 
 
 
@@ -21,11 +21,11 @@ class Forum extends ActiveRecordModel
      *
      * @var integer $id primary key auto incremented.
      */
-    public $user_id;
+
     public $question_id;
     public $acronym;
-    public $question;
+    public $answer;
     public $created;
-    public $description;
     public $gravatar;
+    public $user_id;
 }
