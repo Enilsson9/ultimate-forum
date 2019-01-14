@@ -8,6 +8,8 @@ use Edward\Forum\Question;
 use Edward\Forum\User2Question;
 use Edward\Forum\Question2Tag;
 use Edward\Forum\Tags;
+use Edward\Filter\Filter;
+
 /**
  * Form to create an item.
  */
@@ -99,7 +101,11 @@ class CreateForm extends FormModel
         $question->setDb($this->di->get("dbqb"));
 
         $question->content = $this->form->value("question");
-        $question->description = $this->form->value("description");
+
+        $filter = new Filter();
+        $markdown = $filter->parse($this->form->value("description"), ["markdown"]);
+        $question->description = $markdown;
+
         $question->created = date('Y-m-d H:i:s');
 
         //Connect User to Question

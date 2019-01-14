@@ -20,8 +20,6 @@ if (isset($class)) {
 
 <h1>Filtered by tag</h1>
 
-<button>Ask a question</button>
-
 <?php foreach ($questions as $question) : ?>
     <?php if ($question->id == $id  ) : ?>
         <h2>Tag "<?= $question->tag ?>"</h2>
@@ -43,7 +41,7 @@ if (isset($class)) {
                     <h4><?= $question->question ?></h4>
                 </a>
                 <p>By
-                    <a href="<?= url("forum/users/{$question->acronym}"); ?>">
+                    <a href="<?= url("forum/user/{$question->acronym}"); ?>">
                         <?= $question->acronym ?>
                     </a>
                 </p>

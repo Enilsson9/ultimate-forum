@@ -12,6 +12,7 @@ use Edward\Forum\Tags;*/
 
 use Edward\Forum\Qcomment;
 use Edward\Forum\User2Qcomment;
+use Edward\Filter\Filter;
 
 /**
  * Form to create an item.
@@ -64,7 +65,9 @@ class CommentQuestionForm extends FormModel
         $comment->setDb($this->di->get("dbqb"));
 
         // Add content to comment
-        $comment->content = $this->form->value("comment");
+        $filter = new Filter();
+        $markdown = $filter->parse($this->form->value("comment"), ["markdown"]);
+        $comment->content = $markdown;
         $comment->created = date('Y-m-d H:i:s');
 
         //Connect User to Comment

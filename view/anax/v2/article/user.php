@@ -42,7 +42,7 @@ if (isset($class)) {
                     <h4><?= $question->question ?></h4>
                 </a>
                 <p>By
-                    <a href="<?= url("forum/users/{$question->acronym}"); ?>">
+                    <a href="<?= url("forum/user/{$question->acronym}"); ?>">
                         <?= $question->acronym ?>
                     </a>
                 </p>

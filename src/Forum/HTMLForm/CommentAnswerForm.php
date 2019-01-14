@@ -14,6 +14,7 @@ use Edward\Forum\Acomment;
 use Edward\Forum\User2Acomment;
 use Edward\Forum\Answer2Comment;
 use Edward\Forum\Answer;
+use Edward\Filter\Filter;
 
 /**
  * Form to create an item.
@@ -43,9 +44,10 @@ class CommentAnswerForm extends FormModel
 
         foreach ($answers as $answer) {
             if ($answer->question_id == array_values(array_slice($route, -1))[0]) {
-                $options[$answer->id] = '"' . $answer->answer . '" by ' . $answer->acronym;
+                $options[$answer->id] = '"' . preg_replace('/([^?!.]*.).*/', '\\1',  $answer->answer) . 
+                '" by ' . $answer->acronym;
             } else {
-                $options[0] = "No answer yet";
+                $options[0] = "Select an answer";
             }
         }
 
@@ -101,7 +103,9 @@ class CommentAnswerForm extends FormModel
         $comment->setDb($this->di->get("dbqb"));
 
         // Add content to comment
-        $comment->content = $this->form->value("comment");
+        $filter = new Filter();
+        $markdown = $filter->parse($this->form->value("comment"), ["markdown"]);
+        $comment->content = $markdown;
         $comment->created = date('Y-m-d H:i:s');
 
         //Connect User to Comment

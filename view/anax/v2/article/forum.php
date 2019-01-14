@@ -21,6 +21,8 @@ if (isset($class)) {
 <h1>Our ultimate forum</h1>
 
 <p>Ask a question <a href="forum/ask/">here</a></p>
+<p>Check all tags <a href="forum/tags">here</a></p>
+<p>Check all users <a href="forum/users">here</a></p>
 <h2>All questions</h2>
 
 <?php foreach ($questions as $question) : ?>
@@ -35,7 +37,7 @@ if (isset($class)) {
 
                 <?php if ($tag->id === $question->question_id  ) : ?>
 
-                    <a href="<?= url("forum/tags/{$tag->tag_id}"); ?>">
+                    <a href="<?= url("forum/tag/{$tag->tag_id}"); ?>">
                         <?= $tag->tag ?>
                     </a>
                     -
@@ -45,7 +47,7 @@ if (isset($class)) {
             <?php endforeach; ?>
 
             <p>By
-                <a href="<?= url("forum/users/{$question->user_id}"); ?>">
+                <a href="<?= url("forum/user/{$question->user_id}"); ?>">
                     <?= $question->acronym ?>
                 </a>
             </p>

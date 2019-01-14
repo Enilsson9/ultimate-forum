@@ -64,7 +64,7 @@ class ForumController implements ContainerInjectableInterface
      * @return object as a response object
      */
 
-    public function tagsAction(int $id) : object
+    public function tagAction(int $id) : object
     {
         $page = $this->di->get("page");
 
@@ -94,7 +94,7 @@ class ForumController implements ContainerInjectableInterface
      */
     //public function loginAction() : object
 
-    public function usersAction(int $id) : object
+    public function userAction(int $id) : object
     {
         $page = $this->di->get("page");
 
@@ -194,6 +194,60 @@ class ForumController implements ContainerInjectableInterface
             "title" => "Update an item",
         ]);
     }
+
+
+    /**
+     * Description.
+     *
+     * @param datatype $variable Description
+     *
+     * @throws Exception
+     *
+     * @return object as a response object
+     */
+
+    public function tagsAction() : object
+    {
+        $page = $this->di->get("page");
+
+        $tags = new Tags();
+        $tags->setDb($this->di->get("dbqb"));
+
+        $page->add("anax/v2/article/alltags", [
+            "tags" => $tags->findAll(),
+        ]);
+
+        return $page->render([
+            "title" => "All tags",
+        ]);
+    }
+
+    /**
+     * Description.
+     *
+     * @param datatype $variable Description
+     *
+     * @throws Exception
+     *
+     * @return object as a response object
+     */
+
+    public function usersAction() : object
+    {
+        $page = $this->di->get("page");
+
+        $users = new User();
+        $users->setDb($this->di->get("dbqb"));
+
+        $page->add("anax/v2/article/view-all", [
+            "users" => $users->findAll(),
+        ]);
+
+        return $page->render([
+            "title" => "All tags",
+        ]);
+    }
+
 
 
 

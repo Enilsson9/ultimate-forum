@@ -7,12 +7,12 @@ use Anax\DatabaseActiveRecord\ActiveRecordModel;
 /**
  * A database driven model using the Active Record design pattern.
  */
-class Tags extends ActiveRecordModel
+class User extends ActiveRecordModel
 {
     /**
      * @var string $tableName name of the database table.
      */
-    protected $tableName = "Tag";
+    protected $tableName = "User";
 
 
 
@@ -22,6 +22,8 @@ class Tags extends ActiveRecordModel
      * @var integer $id primary key auto incremented.
      */
     public $id;
-    public $content;
-    public $description;
+    public $acronym;
+    public $fullname;
+    public $email;
+    public $gravatar;
 }

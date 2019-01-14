@@ -21,6 +21,8 @@ if (isset($class)) {
 <h1>Our ultimate forum</h1>
 
 <p>Ask a question <a href="forum/ask">here</a></p>
+<p>Check all tags<a href="forum/tags">here</a></p>
+
 <h2>All questions</h2>
 
 <?php foreach ($questions as $question) : ?>

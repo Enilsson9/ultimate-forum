@@ -55,7 +55,8 @@ CREATE TABLE question2tag (
 DROP TABLE IF EXISTS Tag;
 CREATE TABLE Tag (
     "id" INTEGER PRIMARY KEY NOT NULL,
-    "content" TEXT NOT NULL
+    "content" TEXT NOT NULL,
+    "description" TEXT
 );
 
 

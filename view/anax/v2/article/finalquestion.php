@@ -31,7 +31,7 @@ if (isset($class)) {
         <h4><?= $question->description ?></h4>
 
         <p>Asked by
-            <a href="../users/<?= $question->user_id ?>">/<?= $question->acronym ?></a>
+            <a href="../user/<?= $question->user_id ?>">/<?= $question->acronym ?></a>
             <span><?= $question->created ?></span>
             <img width="50px" src="<?= $question->gravatar?>" alt="Gravatar">
         </p>
@@ -44,12 +44,10 @@ if (isset($class)) {
 <!-- MAIN QUERY COMMENTS -->
 <?php foreach ($Qcomments as $comment) : ?>
     <?php if ($comment->question_id == $id  ) : ?>
-        <i><?= $comment->comment ?> // <a href="../users/<?= $comment->id ?>"><?= $comment->acronym ?></a>
+        <i><?= $comment->comment ?> // <a href="../user/<?= $comment->id ?>"><?= $comment->acronym ?></a>
         - <?= $comment->created ?></i>
     <?php endif; ?>
 <?php endforeach; ?>
-<br>
-<br>
 <?= $qform ?>
 
 
@@ -61,7 +59,7 @@ if (isset($class)) {
         <h4><?= $answer->answer ?></h4>
 
         <p>Answered by
-            <a href="../users/<?= $answer->user_id ?>"><?= $answer->acronym ?></a>
+            <a href="../user/<?= $answer->user_id ?>"><?= $answer->acronym ?></a>
             <span><?= $answer->created ?></span>
             <img width="50px" src="<?= $answer->gravatar?>" alt="Gravatar">
         </p>
@@ -71,13 +69,11 @@ if (isset($class)) {
         <?php foreach ($Acomments as $comment) : ?>
 
             <?php if ($comment->question_id == $id && $comment->answer_id == $answer->id) : ?>
-                <i><?= $comment->comment ?> // <a href="../users/<?= $comment->id ?>"><?= $comment->acronym ?></a>
+                <i><?= $comment->comment ?> // <a href="../user/<?= $comment->id ?>"><?= $comment->acronym ?></a>
                 - <?= $comment->created ?></i>
             <?php endif; ?>
         <?php endforeach; ?>
-    <?php else: ?>
-        <p>No answers yet</p>
-        <?php break; ?>
+
     <?php endif; ?>
 <?php endforeach; ?>
 

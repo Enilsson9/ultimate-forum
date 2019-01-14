@@ -8,6 +8,7 @@ use Psr\Container\ContainerInterface;
 use Edward\Forum\InsertAnswer;
 use Edward\Forum\User2Answer;
 use Edward\Forum\Question2Answer;
+use Edward\Filter\Filter;
 
 //use Edward\Forum\Qcomment;
 //use Edward\Forum\User2Qcomment;
@@ -62,7 +63,9 @@ class CreateAnswerForm extends FormModel
         $answer->setDb($this->di->get("dbqb"));
 
         // Add content to answer
-        $answer->content = $this->form->value("answer");
+        $filter = new Filter();
+        $markdown = $filter->parse($this->form->value("answer"), ["markdown"]);
+        $answer->content = $markdown;
         $answer->created = date('Y-m-d H:i:s');
 
         //Connect User to Comment

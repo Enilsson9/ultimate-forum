@@ -51,12 +51,12 @@ INSERT INTO question2tag VALUES
 
 DELETE FROM Tag;
 INSERT INTO Tag VALUES
-    ("1", "random"),
-    ("2", "other"),
-    ("3", "dark"),
-    ("4", "tech"),
-    ("5", "business"),
-    ("6", "whatever")
+    ("1", "random", "Here you can do random stuff"),
+    ("2", "other", "Here you can do random other"),
+    ("3", "dark", "Here you can do random dark"),
+    ("4", "tech", "Here you can do random tech"),
+    ("5", "business", "Here you can do random business"),
+    ("6", "whatever", "Here you can do random whatever")
 ;
 
 DELETE FROM question2answer;
