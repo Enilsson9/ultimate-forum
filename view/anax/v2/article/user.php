@@ -41,11 +41,6 @@ if (isset($class)) {
                 <a href="<?= url("forum/questions/{$question->question_id}"); ?>">
                     <h4><?= $question->question ?></h4>
                 </a>
-                <p>By
-                    <a href="<?= url("forum/user/{$question->acronym}"); ?>">
-                        <?= $question->acronym ?>
-                    </a>
-                </p>
                 Created: <time><?= $question->created ?></time>
             </div>
         <?php endif; ?>

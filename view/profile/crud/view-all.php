@@ -38,3 +38,4 @@ namespace Anax\View;
 </table>
 
 <p>Click <a href="profile/update">here</a> to update</p>
+<p>Click <a href="profile?logout">here</a> to log out</p>

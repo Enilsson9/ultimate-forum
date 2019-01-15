@@ -31,6 +31,7 @@ class ProfileController implements ContainerInjectableInterface
     {
         $page = $this->di->get("page");
         $session = $this->di->get("session");
+        $request = $this->di->get("request");
         $current = $session->get('username');
         $id = $current->id;
 
@@ -39,6 +40,10 @@ class ProfileController implements ContainerInjectableInterface
 
         $item = $profile->findAll();
         $item = $item[$id - 1];
+
+        if (isset($_GET['logout'])) {
+            $session->destroy();
+        }
 
         $page->add("profile/crud/view-all", [
             //"items" => $profile->findAll(),

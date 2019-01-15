@@ -1,9 +1,14 @@
 <?php
 
 if (isset($_SESSION['username'])) {
-    $handler = "\Edward\Home\HomeController";
+    $home = "\Edward\Home\HomeController";
+    $profile = "\Edward\Profile\ProfileController";
+    $forum = "\Edward\Forum\ForumController";
+
 } else {
-    $handler = "\Edward\User\UserController";
+    $home = "\Edward\User\UserController";
+    $profile = "\Edward\User\UserController";
+    $forum = "\Edward\User\UserController";
 }
 
 return [
@@ -20,22 +25,22 @@ return [
         [
             "info" => "Sample controller.",
             "mount" => "home",
-            "handler" => "\Edward\Home\HomeController",
+            "handler" => $home,
         ],
         [
             "info" => "Sample controller.",
             "mount" => "forum",
-            "handler" => "\Edward\Forum\ForumController",
+            "handler" => $forum,
         ],
         [
             "info" => "Sample controller.",
             "mount" => "profile",
-            "handler" => "\Edward\Profile\ProfileController",
+            "handler" => $profile,
         ],
         [
             "info" => "Just say hi with a string.",
             "path" => "",
-            "handler" => $handler,
+            "handler" => $home,
         ],
     ]
 ];
