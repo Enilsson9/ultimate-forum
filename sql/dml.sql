@@ -238,13 +238,15 @@ ORDER BY question_id;
 
 
 --
---most active users 
+--most active users
 --
-DROP VIEW IF EXISTS VUsersRecord;
-CREATE VIEW VUsersRecord
+DROP VIEW IF EXISTS VActiveUsers;
+CREATE VIEW VActiveUsers
 AS
 SELECT
-    u.id AS id
+    u.id AS id,
+    u.acronym AS acronym,
+    u.gravatar AS gravatar
 FROM User AS u
     JOIN VAnswerQuestionUser AS vaqu
         ON vaqu.user_id_answer = u.id
@@ -252,19 +254,9 @@ FROM User AS u
         ON uqc.user_id = u.id
     JOIN user2acomment AS uac
         ON uac.user_id = u.id
-GROUP BY U.id
+GROUP BY u.id
 ORDER BY COUNT(*) DESC
 LIMIT 3;
-
-
-
---
---View all answers with user
---
---DROP VIEW IF EXISTS VActiveUsers;
---CREATE VIEW VActiveUsers
-
-
 
 
 --
@@ -274,20 +266,17 @@ DROP VIEW IF EXISTS VPopularTags;
 CREATE VIEW VPopularTags
 AS
 SELECT
-    u.id AS id,
-    u.acronym AS acronym,
-    ac.content AS comment,
-    ac.created AS created,
-    ua.question_id AS question_id,
-    anc.answer_id AS answer_id
-FROM User AS u
-    JOIN user2acomment AS ua
-        ON ua.user_id = u.id
-    JOIN AComment AS ac
-        ON ua.comment_id = ac.id
-    JOIN answer2comment AS anc
-        ON anc.comment_id = ac.id
-ORDER BY ID;
+    t.id AS id,
+    t.content AS tag,
+    t.description AS description
+FROM Question AS q
+    JOIN question2tag AS qt
+        ON qt.question_id = q.id
+    JOIN Tag AS t
+        ON qt.tag_id = t.id
+GROUP BY t.id
+ORDER BY COUNT(*) DESC
+LIMIT 3;
 
 --
 --View all answers with user
@@ -296,17 +285,20 @@ DROP VIEW IF EXISTS VLatestQuestions;
 CREATE VIEW VLatestQuestions
 AS
 SELECT
-    u.id AS id,
+    u.id AS user_id,
+    q.id AS question_id,
     u.acronym AS acronym,
-    ac.content AS comment,
-    ac.created AS created,
-    ua.question_id AS question_id,
-    anc.answer_id AS answer_id
+    q.content AS question,
+    q.description AS description,
+    q.created AS created
 FROM User AS u
-    JOIN user2acomment AS ua
-        ON ua.user_id = u.id
-    JOIN AComment AS ac
-        ON ua.comment_id = ac.id
-    JOIN answer2comment AS anc
-        ON anc.comment_id = ac.id
-ORDER BY ID;
+    JOIN user2question AS uq
+        ON uq.user_id = u.id
+    JOIN Question AS q
+        ON uq.question_id = q.id
+    JOIN user2answer AS ua
+        ON ua.answer_id = u.id
+    JOIN Answer AS a
+        ON ua.answer_id = a.id
+ORDER BY created DESC
+LIMIT 3;
