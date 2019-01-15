@@ -17,10 +17,6 @@ $urlToViewItems = url("book");
 
 
 
-?><h1>Create an item</h1>
+?><h1>Ask on the forum</h1>
 
 <?= $form ?>
-
-<p>
-    <a href="<?= $urlToViewItems ?>">View all</a>
-</p>

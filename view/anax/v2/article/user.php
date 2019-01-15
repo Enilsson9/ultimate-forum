@@ -18,11 +18,6 @@ if (isset($class)) {
 
 ?><article <?= classList($classes) ?>>
 
-    <pre>
-    <?php
-        //var_dump($questions)
-     ?>
-    </pre>
 
 <?php foreach ($questions as $question) : ?>
     <?php if ($question->user_id == $id  ) : ?>

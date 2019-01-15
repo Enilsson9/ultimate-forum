@@ -1,3 +1,3 @@
-#### Kursrepo
+#### Check it on Github
 
-Skriv något kort om kursen och länka till [kursens hemsida på dbwebb.se](XXX) och till [kursrepot på GitHub](XXX).
+You can find the repo [here](https://github.com/Enilsson9/ultimate-forum).

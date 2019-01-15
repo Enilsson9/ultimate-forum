@@ -1,3 +1,7 @@
-#### Redovisa på GitHub
+#### Developer
 
-Skriv något kort om ditt redovisa-repo och länka till [repot för me/redovisa på GitHub](XXX).
+Edward Nilsson studies Software Engineering and works a support technician.
+
+![Me pic](img/me.jpg)
+
+Check his Github page [here](https://github.com/Enilsson9).

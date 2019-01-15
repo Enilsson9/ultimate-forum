@@ -1,3 +1,4 @@
-#### Footer col 3
+#### Developers
 
-Med brödtext i ett stycke som säger något trevligt om just detta block, eller kanske en lista av länkar.
+Want to help to develop the site?
+Send an email to edward@nilsson.gt about it.

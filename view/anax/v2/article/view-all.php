@@ -15,7 +15,7 @@ namespace Anax\View;
     </tr>
     <?php foreach ($users as $user) : ?>
         <tr>
-            <td> <a href="user/"<?= $user->id ?>> <?= $user->id ?></a></td>
+            <td> <a href="user/<?= $user->id ?>"> <?= $user->id ?></a></td>
             <td><img src="<?= $user->gravatar ?>" alt="Gravatar"></td>
             <td><?= $user->fullname ?></td>
             <td><?= $user->acronym ?></td>

@@ -18,41 +18,51 @@ if (isset($class)) {
 
 ?><article <?= classList($classes) ?>>
 
-<h1>Our ultimate forum</h1>
+<h1>Our forum</h1>
 
-<p>Ask a question <a href="forum/ask/">here</a></p>
-<p>Check all tags <a href="forum/tags">here</a></p>
-<p>Check all users <a href="forum/users">here</a></p>
+<p>Ask a <a href="forum/ask/">question</a>|
+Check all <a href="forum/tags">tags</a>|
+Check all <a href="forum/users">users</a></p>
+
 <h2>All questions</h2>
 
 <?php foreach ($questions as $question) : ?>
 
 
-        <div class="byline">
+        <div class="author-byline">
             <a href="<?= url("forum/questions/{$question->question_id}"); ?>">
                 <h4><?= $question->question ?></h4>
             </a>
-            Tags:
-            <?php foreach ($tags as $tag) : ?>
-
-                <?php if ($tag->id === $question->question_id  ) : ?>
-
-                    <a href="<?= url("forum/tag/{$tag->tag_id}"); ?>">
-                        <?= $tag->tag ?>
+            <p>
+                <span>By
+                    <a href="<?= url("forum/user/{$question->user_id}"); ?>">
+                        <?= $question->acronym ?>
                     </a>
-                    -
-                <?php endif; ?>
-
-
-            <?php endforeach; ?>
-
-            <p>By
-                <a href="<?= url("forum/user/{$question->user_id}"); ?>">
-                    <?= $question->acronym ?>
-                </a>
+                </span> -
+                <time><?= $question->created ?></time>
             </p>
+            <i>
+                Tags:
+                <?php foreach ($tags as $tag) : ?>
 
-            <time><?= $question->created ?></time>
+                    <?php if ($tag->id === $question->question_id  ) : ?>
+
+                        <a href="<?= url("forum/tag/{$tag->tag_id}"); ?>">
+                            <?= $tag->tag ?>
+                        </a>
+                        |
+                    <?php endif; ?>
+
+
+                <?php endforeach; ?>
+
+
+            </i>
+
+
+
+
+
         </div>
 
 

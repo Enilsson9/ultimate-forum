@@ -27,7 +27,7 @@ class ProfileController implements ContainerInjectableInterface
      *
      * @return object as a response object
      */
-    public function indexActionGet() : object
+    public function indexAction() : object
     {
         $page = $this->di->get("page");
         $session = $this->di->get("session");
@@ -43,6 +43,7 @@ class ProfileController implements ContainerInjectableInterface
 
         if (isset($_GET['logout'])) {
             $session->destroy();
+            $this->di->get("response")->redirect("");
         }
 
         $page->add("profile/crud/view-all", [
@@ -55,7 +56,7 @@ class ProfileController implements ContainerInjectableInterface
 
 
         return $page->render([
-            "title" => "A collection of items",
+            "title" => "Your profile",
         ]);
     }
 
@@ -81,7 +82,7 @@ class ProfileController implements ContainerInjectableInterface
         ]);
 
         return $page->render([
-            "title" => "Update an item",
+            "title" => "Update your profile",
         ]);
     }
 }

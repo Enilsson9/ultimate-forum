@@ -38,7 +38,7 @@ class ForumController implements ContainerInjectableInterface
     {
         $page = $this->di->get("page");
 
-        $forum = new Forum();
+        $forum = new UserQuestion();
         $tags = new Tag();
 
         $forum->setDb($this->di->get("dbqb"));
@@ -50,7 +50,7 @@ class ForumController implements ContainerInjectableInterface
         ]);
 
         return $page->render([
-            "title" => "A home page",
+            "title" => "Our forum",
         ]);
     }
 
@@ -78,7 +78,7 @@ class ForumController implements ContainerInjectableInterface
         ]);
 
         return $page->render([
-            "title" => "A home page",
+            "title" => "Filter by tag",
         ]);
     }
 
@@ -111,7 +111,7 @@ class ForumController implements ContainerInjectableInterface
         ]);
 
         return $page->render([
-            "title" => "A home page",
+            "title" => "User",
         ]);
     }
 
@@ -131,7 +131,8 @@ class ForumController implements ContainerInjectableInterface
     {
         $page = $this->di->get("page");
 
-        $question = new Forum();
+        //$question = new Forum();
+        $question = new UserQuestion();
         $question->setDb($this->di->get("dbqb"));
 
         $answer = new Answer();
@@ -164,7 +165,7 @@ class ForumController implements ContainerInjectableInterface
         ]);
 
         return $page->render([
-            "title" => "Ultimate forum",
+            "title" => "Question",
         ]);
     }
 
@@ -191,7 +192,7 @@ class ForumController implements ContainerInjectableInterface
         ]);
 
         return $page->render([
-            "title" => "Update an item",
+            "title" => "Ask a question",
         ]);
     }
 
@@ -244,11 +245,7 @@ class ForumController implements ContainerInjectableInterface
         ]);
 
         return $page->render([
-            "title" => "All tags",
+            "title" => "All users",
         ]);
     }
-
-
-
-
 }

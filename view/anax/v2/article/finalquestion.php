@@ -18,24 +18,18 @@ if (isset($class)) {
 
 ?><article <?= classList($classes) ?>>
 
-    <pre>
-    <?php
-        //var_dump($answers)
-     ?>
-    </pre>
-
 <!-- MAIN QUERY -->
 <?php foreach ($questions as $question) : ?>
     <?php if ($question->question_id == $id  ) : ?>
         <h1><?= $question->question ?></h1>
         <h4><?= $question->description ?></h4>
 
-        <p>Asked by
+        <p><small>Asked by
             <a href="../user/<?= $question->user_id ?>">/<?= $question->acronym ?></a>
             <span><?= $question->created ?></span>
-            <img width="50px" src="<?= $question->gravatar?>" alt="Gravatar">
+            <img width="50px" src="<?= $question->gravatar?>" alt="Gravatar"></small>
         </p>
-
+        <hr>
         <?php break; ?>
     <?php endif; ?>
 <?php endforeach; ?>
@@ -44,35 +38,42 @@ if (isset($class)) {
 <!-- MAIN QUERY COMMENTS -->
 <?php foreach ($Qcomments as $comment) : ?>
     <?php if ($comment->question_id == $id  ) : ?>
-        <i><?= $comment->comment ?> // <a href="../user/<?= $comment->id ?>"><?= $comment->acronym ?></a>
-        - <?= $comment->created ?></i>
+        <small><?= $comment->comment ?> // <a href="../user/<?= $comment->id ?>"><?= $comment->acronym ?></a>
+        - <?= $comment->created ?></small>
     <?php endif; ?>
 <?php endforeach; ?>
+<br><br>
 <?= $qform ?>
 
 
 
-
+<h2>Answers</h2>
 <!-- MAIN ANSWER -->
 <?php foreach ($answers as $answer) : ?>
     <?php if ($answer->question_id == $id  ) : ?>
-        <h4><?= $answer->answer ?></h4>
+        <div class="author-byline">
 
-        <p>Answered by
-            <a href="../user/<?= $answer->user_id ?>"><?= $answer->acronym ?></a>
-            <span><?= $answer->created ?></span>
-            <img width="50px" src="<?= $answer->gravatar?>" alt="Gravatar">
-        </p>
 
+            <h4><?= $answer->answer ?></h4>
+
+            <small>Answered by
+                <a href="../user/<?= $answer->user_id ?>"><?= $answer->acronym ?></a>
+                <span><?= $answer->created ?></span>
+                <img width="50px" src="<?= $answer->gravatar?>" alt="Gravatar">
+        </small>
+
+
+        <hr>
         <!--<p><b>Comments:</b></p>-->
         <!-- MAIN Answer COMMENTS -->
         <?php foreach ($Acomments as $comment) : ?>
 
             <?php if ($comment->question_id == $id && $comment->answer_id == $answer->id) : ?>
-                <i><?= $comment->comment ?> // <a href="../user/<?= $comment->id ?>"><?= $comment->acronym ?></a>
-                - <?= $comment->created ?></i>
+                <p><small><?= $comment->comment ?> // <a href="../user/<?= $comment->id ?>"><?= $comment->acronym ?></a>
+                - <?= $comment->created ?></small></p>
             <?php endif; ?>
         <?php endforeach; ?>
+        </div>
 
     <?php endif; ?>
 <?php endforeach; ?>

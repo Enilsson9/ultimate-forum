@@ -7,15 +7,15 @@ return [
     "id" => "rm-menu",
     "wrapper" => null,
     "class" => "rm-default rm-mobile",
- 
+
     // Here comes the menu items
     "items" => [
         [
-            "text" => "Hem",
+            "text" => "Home",
             "url" => "",
             "title" => "Första sidan, börja här.",
         ],
-        [
+        /*[
             "text" => "Redovisning",
             "url" => "redovisning",
             "title" => "Redovisningstexter från kursmomenten.",
@@ -33,21 +33,21 @@ return [
                     ],
                 ],
             ],
+        ],*/
+        [
+            "text" => "About",
+            "url" => "about",
+            "title" => "About this website",
         ],
         [
-            "text" => "Om",
-            "url" => "om",
-            "title" => "Om denna webbplats.",
+            "text" => "Profile",
+            "url" => "profile",
+            "title" => "My profile",
         ],
         [
-            "text" => "Styleväljare",
-            "url" => "style",
-            "title" => "Välj stylesheet.",
-        ],
-        [
-            "text" => "Verktyg",
-            "url" => "verktyg",
-            "title" => "Verktyg och möjligheter för utveckling.",
+            "text" => "Forum",
+            "url" => "forum",
+            "title" => "Our ultimate forum",
         ],
     ],
 ];

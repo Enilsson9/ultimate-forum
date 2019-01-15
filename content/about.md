@@ -19,18 +19,11 @@ views:
 About
 =========================
 
-The primary focus of this website is to:
+This a forum for guys who want to grow a beard with the help of [Minoxidil](https://en.wikipedia.org/wiki/Minoxidil).
 
-* To be used in teaching the [dbwebb course ramverk1](http://dbwebb.se/ramverk1).
+This forum was inspired on the official Facebook [group](https://www.facebook.com/groups/TheMinoxBeardSpot/)
+ and the official beard [Wiki](http://beardwiki.com).
 
-This site is produced by [Edward Nilsson](https://github.com/Enilsson9) (enilsson9@hotmail.com).
+This website was created as a project for the [dbwebb course ramverk1](http://dbwebb.se/ramverk1).
 
-[Check repo on Github](https://github.com/Enilsson9/ramverk1)
-
-
-
-
-
-Mitt namn är Edward Nilsson och är 21 år. Född och uppvuxen i Guatemala City, Guatemala. Jag är halvsvensk/halvguatemalansk och har bott i Guate (som vi kallar det) nästan hela mitt liv. När jag var 16 år började jag att lära mig det svenska språket. När jag blev 18 år flyttade jag till Sverige för att kunna läsa på högskolan. Jag bodde i Sverige i 2 år, lärde mig språket och jobbade som vikarielärare. Om jag skall nämna någon hobby så får det bli att gå på gymmet och kolla på serier.
-
-Jag sitter just nu i Guatemala City och jobbar deltid på distans som supportekniker hos det svenska webbhotellet <a target="blank" href="https://misshosting.se">Misshosting</a>. När jag blir klar med utbildningen vill jag jobba/frilansa som en full-stack utvecklare, gärna på distans också.
+![Beard logo](img/beard.jpg)

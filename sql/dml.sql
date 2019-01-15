@@ -25,6 +25,26 @@ FROM User AS u
 ORDER BY user_id;
 
 --
+--View all questions with user and created CURRENT_TIMESTAMP
+--
+DROP VIEW IF EXISTS VUserQuestion;
+CREATE VIEW VUserQuestion
+AS
+SELECT
+    u.id AS user_id,
+    q.id AS question_id,
+    u.acronym AS acronym,
+    q.content AS question,
+    q.created AS created,
+    u.gravatar AS gravatar,
+    q.description AS description
+FROM User AS u
+    JOIN user2question AS uq
+        ON uq.user_id = u.id
+    JOIN Question AS q
+        ON uq.question_id = q.id
+ORDER BY user_id;
+--
 --View all answers with user
 --
 DROP VIEW IF EXISTS VAllAnswer;
@@ -197,30 +217,25 @@ CREATE VIEW VUltimate
 AS
 SELECT
     q.id AS question_id,
-
-    q.content AS question_content
-    --q.description AS question_description,
-
-    --vaq.user_id AS user_question_id,
-    --vaq.acronym AS user_question_acronym,
+    q.content AS question_content,
+    q.description AS question_description,
+    vaq.user_id AS user_question_id,
+    vaq.acronym AS user_question_acronym,
     --vaq.created AS user_question_created,
     --vaq.gravatar AS user_question_gravatar,
-
-    --vqc.comment AS comment_question,
-    --vqc.acronym AS comment_question_user,
-    --vqc.id AS comment_question_user_id,
-    --vqc.created AS comment_question_created,
-
-    --vaa.answer AS answer_content,
-    --vaa.acronym AS answer_user,
-    --vaa.id AS answer_user_id
-    --vaa.gravatar AS answer_user_gravatar,
-    --vaa.created AS answer_user_created,
-
-    --vac.comment AS comment_answer,
-    --vac.acronym AS comment_answer_user,
-    --vac.id AS comment_answer_user_id,
-    --vac.created AS comment_answer_created
+    vqc.comment AS comment_question,
+    vqc.acronym AS comment_question_user,
+    vqc.id AS comment_question_user_id,
+    vqc.created AS comment_question_created,
+    vaa.answer AS answer_content,
+    vaa.acronym AS answer_user,
+    vaa.id AS answer_user_id,
+    vaa.gravatar AS answer_user_gravatar,
+    vaa.created AS answer_user_created,
+    vac.comment AS comment_answer,
+    vac.acronym AS comment_answer_user,
+    vac.id AS comment_answer_user_id,
+    vac.created AS comment_answer_created
 
 FROM Question AS q
     JOIN VAllQuestion AS vaq
@@ -302,3 +317,50 @@ FROM User AS u
         ON ua.answer_id = a.id
 ORDER BY created DESC
 LIMIT 3;
+
+--
+--View all answers with user
+--
+DROP VIEW IF EXISTS VUserPoints;
+CREATE VIEW VUserPoints
+AS
+SELECT
+    u.id AS user_id,
+    uq.question_id AS question_id,
+    ua.answer_id AS answer_id,
+    uqc.comment_id AS comment_question_id,
+    uac.comment_id AS comment_answer_id
+FROM User AS u
+    JOIN user2question AS uq
+        ON uq.user_id = u.id
+--    JOIN Question AS q
+--        ON uq.question_id = q.id
+    JOIN user2answer AS ua
+        ON ua.user_id = u.id
+--    JOIN Answer AS a
+    --    ON ua.answer_id = a.id
+    JOIN user2qcomment AS uqc
+        ON uqc.user_id = u.id
+--    JOIN QComment AS qco
+    --    ON uqc.comment_id = qco.id
+    JOIN user2acomment AS uac
+        ON uac.user_id = u.id
+    --JOIN AComment AS aco
+    --    ON uac.comment_id = aco.id
+ORDER BY user_id;
+
+--
+--View all answers with user
+--
+DROP VIEW IF EXISTS VUserQuestionPoints;
+CREATE VIEW VUserQuestionPoints
+AS
+SELECT
+    u.id AS id,
+    q.content AS question
+FROM User AS u
+    JOIN user2question AS uq
+        ON uq.user_id = u.id
+    JOIN Question AS q
+        ON uq.question_id = q.id
+ORDER BY id;
