@@ -9,6 +9,8 @@ Installation instructions
 1. Pull the repository from GitHub.
 2. Run the setup.bash file located in ~/sql/.
 
+All usernames have the password 'password'.
+
 License
 ------------------
 
