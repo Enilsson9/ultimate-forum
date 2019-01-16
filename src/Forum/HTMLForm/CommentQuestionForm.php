@@ -106,7 +106,7 @@ class CommentQuestionForm extends FormModel
     {
         //$this->di->get("response")->redirect("forum")->send();
 
-        $this->di->get("response")->send();
+        $this->di->get("response")->redirectSelf()->send();
     }
 
 

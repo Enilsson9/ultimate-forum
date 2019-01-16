@@ -1,6 +1,6 @@
-#sqlite3 data/db.sqlite < sql/ddl.sql
+sqlite3 data/db.sqlite < sql/ddl.sql
 
-#sqlite3 data/db.sqlite < sql/insert.sql
+sqlite3 data/db.sqlite < sql/insert/minox.sql
 
 sqlite3 data/db.sqlite < sql/dml.sql
 

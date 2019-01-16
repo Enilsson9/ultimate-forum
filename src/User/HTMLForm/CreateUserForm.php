@@ -330,7 +330,7 @@ class CreateUserForm extends FormModel
      * @return String containing either just a URL or a complete image tag
      * @source https://gravatar.com/site/implement/images/php/
      */
-    public function getGravatar( $email, $s = 80, $d = 'mp', $r = 'g', $img = false, $atts = array() )
+    public function getGravatar( $email, $s = 100, $d = 'identicon', $r = 'PG', $img = false, $atts = array() )
     {
         $url = 'https://www.gravatar.com/avatar/';
         $url .= md5( strtolower( trim( $email ) ) );

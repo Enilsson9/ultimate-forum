@@ -43,7 +43,7 @@ FROM User AS u
         ON uq.user_id = u.id
     JOIN Question AS q
         ON uq.question_id = q.id
-ORDER BY user_id;
+ORDER BY created DESC;
 --
 --View all answers with user
 --
@@ -325,30 +325,31 @@ DROP VIEW IF EXISTS VUserPoints;
 CREATE VIEW VUserPoints
 AS
 SELECT
-    u.id AS user_id,
-    uq.question_id AS question_id,
-    ua.answer_id AS answer_id,
-    uqc.comment_id AS comment_question_id,
-    uac.comment_id AS comment_answer_id
+    SUM(u.id) AS user_id,
+    u.acronym AS acronym,
+    uq.question_id AS question_id
+--    ua.answer_id AS answer_id,
+--    uqc.comment_id AS comment_question_id,
+--    uac.comment_id AS comment_answer_id
 FROM User AS u
     JOIN user2question AS uq
         ON uq.user_id = u.id
 --    JOIN Question AS q
 --        ON uq.question_id = q.id
-    JOIN user2answer AS ua
-        ON ua.user_id = u.id
+--    JOIN user2answer AS ua
+--        ON ua.user_id = u.id
 --    JOIN Answer AS a
     --    ON ua.answer_id = a.id
-    JOIN user2qcomment AS uqc
-        ON uqc.user_id = u.id
+--    JOIN user2qcomment AS uqc
+--        ON uqc.user_id = u.id
 --    JOIN QComment AS qco
     --    ON uqc.comment_id = qco.id
-    JOIN user2acomment AS uac
-        ON uac.user_id = u.id
+--    JOIN user2acomment AS uac
+--        ON uac.user_id = u.id
     --JOIN AComment AS aco
     --    ON uac.comment_id = aco.id
-ORDER BY user_id;
-
+    GROUP BY u.acronym;
+--    ORDER by u.acronym;
 --
 --View all answers with user
 --
@@ -364,3 +365,36 @@ FROM User AS u
     JOIN Question AS q
         ON uq.question_id = q.id
 ORDER BY id;
+
+
+--
+--View all answers with user
+--
+DROP VIEW IF EXISTS Vlast;
+CREATE VIEW Vlast
+AS
+SELECT
+   value,
+   SUM(years) AS years,
+   SUM(total) AS total
+FROM customers
+GROUP BY value;
+
+
+--
+--View all answers with user
+--
+DROP VIEW IF EXISTS VUserAnswer;
+CREATE VIEW VUserAnswer
+AS
+SELECT
+    u.id AS user_id_answer,
+    a.content AS answer,
+    a.id AS answer_id,
+    a.created AS created
+FROM User AS u
+    JOIN user2answer AS ua
+        ON ua.user_id = u.id
+    JOIN Answer AS a
+        ON ua.answer_id = a.id
+ORDER BY user_id;

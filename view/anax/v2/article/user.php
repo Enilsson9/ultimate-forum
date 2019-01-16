@@ -32,7 +32,7 @@ if (isset($class)) {
 <h2>Questions:</h2>
     <?php foreach ($questions as $question) : ?>
         <?php if ($question->user_id == $id  ) : ?>
-            <div class="byline">
+            <div class="author-byline">
                 <a href="<?= url("forum/questions/{$question->question_id}"); ?>">
                     <h4><?= $question->question ?></h4>
                 </a>
@@ -45,7 +45,7 @@ if (isset($class)) {
 
 <?php foreach ($answers as $answer) : ?>
     <?php if ($answer->user_id_answer == $id  ) : ?>
-        <div class="byline">
+        <div class="author-byline">
             On question: <a href="<?= url("forum/questions/{$answer->question_id}"); ?>">
                 <?= $answer->question ?>
             </a>

@@ -45,6 +45,18 @@ if (isset($class)) {
     <li>Remember to look all questions on our <a href="forum">forum</a> first</li>
 </ul>
 
+<h2>Most active users</h2>
+
+
+<?php foreach ($users as $user) : ?>
+<figure style="display: inline-block">
+    <img src="<?= $user->gravatar ?>" width="50px" alt="gravatar">
+    <figcaption><a href="forum/user/<?= $user->id ?>"><?= $user->acronym ?></a><figcaption>
+</figure>
+<?php endforeach; ?>
+
+
+
 <h2>Latest questions</h2>
 <ul>
     <?php foreach ($questions as $question) : ?>
@@ -63,16 +75,6 @@ if (isset($class)) {
     <li>
         <p> <a href="forum/tag/<?= $tag->id ?>"><?= $tag->tag ?></a></p>
         <p><?= $tag->description ?></p>
-    </li>
-    <?php endforeach; ?>
-</ul>
-
-<h2>Most active users</h2>
-<ul>
-    <?php foreach ($users as $user) : ?>
-    <li>
-        <img src="<?= $user->gravatar ?>" width="50px" alt="gravatar">
-        <p> <a href="forum/user/<?= $user->id ?>"><?= $user->acronym ?></a>
     </li>
     <?php endforeach; ?>
 </ul>

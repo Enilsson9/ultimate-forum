@@ -34,7 +34,6 @@ if (isset($class)) {
     <?php endif; ?>
 <?php endforeach; ?>
 
-
 <!-- MAIN QUERY COMMENTS -->
 <?php foreach ($Qcomments as $comment) : ?>
     <?php if ($comment->question_id == $id  ) : ?>

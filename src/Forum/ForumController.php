@@ -98,7 +98,7 @@ class ForumController implements ContainerInjectableInterface
     {
         $page = $this->di->get("page");
 
-        $forum = new Forum();
+        $forum = new UserQuestion();
         $forum->setDb($this->di->get("dbqb"));
 
         $answers = new AnswerUser();
