@@ -14,7 +14,7 @@ All usernames have the password 'password'.
 License
 ------------------
 
-This software carries a MIT license. See [LICENSE.txt](LICENSE.txt) for details.
+This software carries a MIT license. See [LICENSE](LICENSE) for details.
 
 ```
 ..:  Copyright (c) 2019 Edward Nilsson (edward@nilsson.gt)
